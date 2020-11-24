@@ -1,0 +1,47 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+vector<string> getmaze(int sr,int sc,int dr,int dc){
+    
+    if(sr>dr || sc >dc){
+        vector<string> bpaths;
+        return bpaths;
+    }
+    
+    if(sr == dr && sc == dc){
+        vector<string> bpaths;
+        bpaths.push_back("");
+        return bpaths;
+    }
+    
+    vector<string> hpaths = getmaze(sr,sc+1,dr,dc);
+    vector<string> vpaths = getmaze(sr+1,sc,dr,dc);
+    
+    vector<string> paths;
+    
+    for(string hpath:hpaths){
+        paths.push_back("h"+hpath);
+    }
+    
+    for(string vpath:vpaths){
+        paths.push_back("v"+vpath);
+    }
+    
+    return paths;
+    
+}
+
+int main() {
+	// your code goes here
+	
+	int n,m;
+	
+	cin>>n>>m;
+	vector<string> anspaths = getmaze(1,1,n,m);
+	
+	for(string path:anspaths){
+	    cout<<path<<endl;
+	}
+	
+	return 0;
+}
