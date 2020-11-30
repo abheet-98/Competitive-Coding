@@ -1,0 +1,37 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+
+void reverse(string &s,int l,int r){
+    while(l<=r){
+        char t = s[l];
+        s[l] = s[r];
+        s[r] = t;
+        
+        l++;
+        r--;
+    }
+}
+int main() {
+	// your code goes here
+	
+	string s;
+	
+	getline(cin,s);
+	
+	reverse(s,0,s.length()-1);
+	
+	int i = 0;
+	for(int j = 0 ; j < s.length(); j++){
+	    if(s[j] == ' '){
+	        reverse(s,i,j-1);
+	        i = j+1;
+	    }
+	}
+	
+	reverse(s,i,s.length()-1);
+	
+	cout<<s;
+	
+	return 0;
+}
